@@ -506,8 +506,8 @@ GRIRTO: get router info routing-table ospf
 config firewall policy
  edit 1
  set name "VoIP-Allow"
- set srcintf "lan"
- set dstintf "wan"
+ set srcintf "INTERNAL"
+ set dstintf "WAN"
  set srcaddr "all"
  set dstaddr "all"
  set action accept
