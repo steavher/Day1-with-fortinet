@@ -1,5 +1,5 @@
-TASK1: COLLAPSED BACKBONE: BASIC LAYER3 CONFIGURATION.
-!@@@CORE SWITCH SA TAAS
+!TASK1: COLLAPSED BACKBONE: BASIC LAYER3 CONFIGURATION.
+!@@@CORE SWITCH SA TAAS ( LINE 3 to 33 PASTE TO COREtaas SWITCH )
 config t
    hostname COREtaas-~~
    enable secret pass
@@ -32,7 +32,7 @@ config t
 	 description VOICEVLAN
 end
 
-!( LINE 35 to 71 PASTE TO COREBABA SWITCH )
+!( LINE 37 to 71 PASTE TO COREBABA SWITCH )
 !@@@LeafSwitchONLY
 config t
    hostname COREbaba-~~
@@ -72,7 +72,7 @@ end
 
 WARNING: IF YOU SEE AMBER/ORANGE= NEEDS FIXING!!!
 Trunk Ports: switch to switch:
-TAAS/BABA: (Paste on COREtaas & COREbaba)
+TAAS/BABA: (Line 76-83 Paste on COREtaas & COREbaba)
 config t
 Int Range fa0/10-12
  ! shutdown
@@ -84,7 +84,7 @@ end
 
 CCNPSkillsNow: Etherchannel with LinkAggregationControlProtocol:
 WARNING: THREE CABLES IS BETTER THAN ONE!
-@taas/BABA: (Paste on COREtaas & COREbaba)
+@taas/BABA: (Line 88- 94 Paste on COREtaas & COREbaba)
 config t
 Int Range fa0/10-12
  channel-group 1 mode active
@@ -94,7 +94,7 @@ Int Range fa0/10-12
 sh int po1 | inc BW
 
 !DHCP: DYNAMIC HOST CONFIGURATION PROTOCOL
-!@@@LEAF SWITCH
+!@@@LEAF SWITCH (Line 98-124 Paste on COREbaba)
 config t
 ip dhcp Excluded-add 10.~~.1.1 10.~~.1.100
 ip dhcp Excluded-add 10.~~.10.1 10.~~.10.100
@@ -123,7 +123,7 @@ ip dhcp pool VOICEVLAN
    option 150 ip 10.~~.100.8
    END
 
-!!CREATING AND PLACING PORTS INSIDEAVLAN:
+!!CREATING AND PLACING PORTS INSIDEAVLAN: (Line 127-165 Paste on COREbaba)
 config t
 vlan 10
    name WIFIVLAN
@@ -164,7 +164,7 @@ Int Fa 0/7
  switchport access vlan 1
  end
 
-!IP CAMERAS NEED MAC ADDRESS RESERVATION FOR FIXED IP SECURITY.  (LINE 144 to 151 PASTE TO COREBABA)
+!IP CAMERAS NEED MAC ADDRESS RESERVATION FOR FIXED IP SECURITY.  (LINE 168-177 PASTE TO COREBABA)
 config t
 ip routing
 ip dhcp pool CAMERA6
@@ -176,7 +176,8 @@ client-identifier 001a.0709.c258
 end
 show ip dhcp binding
 
-!@@@CME ROUTE CONFIG (Call Manager Express)
+!TASK2***TASK2***TASK2***
+!@@@CME ROUTE CONFIG (Call Manager Express) ( Line 181-199 Paste on CME)
 config t
    hostname CME-~~
    enable secret pass
@@ -197,8 +198,8 @@ config t
 	 no shutdown
  end
  
-!CME REGISTER
-!Change SCCP mode to SIP mode & !Phone SIP Registry
+!CME SIP PHONE REGISTER ( Change "ID MAC"" according to the MAC Address of SIP PHONES)
+!Change SCCP mode to SIP mode & !Phone SIP Registry ( Line 203-287 Paste on CME)
 conf t
 voice service voip
  allow-connections h323 to sip
@@ -289,20 +290,20 @@ end
 !It must show the sip mac addresses for the phones to have numbers
 show voice register tftp-bind
 
-!Register Phones Re-Create profile
+!Register Phones Re-Create profile ( Line 294-297 Paste on CME )
 conf t
 voice register global
 create profile sync syncinfo
 end
 
-!@incoming and outgoing call
+!@incoming and outgoing call ( Line 300-304 Paste on CME )
 conf t
  voice service voip
  ip address trusted list
  ipv4 0.0.0.0 0.0.0.0
  end
 
-!Dial-Peer Don't Touch yourself
+!Dial-Peer Don't Touch yourself ( Line 307-380 Paste on CME )
 conf t
  dial-peer voice 11 Voip
   destination-pattern 11..
@@ -378,15 +379,15 @@ conf t
   codec g711ULAW
  end
  
-!OSPF ROUTING
-!@CME: (Call Manager Express)
+!OSPF ROUTING ( Line 384-388 Paste on CME )
+!@CME: (Call Manager Express) 
 config t
 router ospf 1
 router-id 10.~~.100.8
 network 10.~~.100.0  0.0.0.255  area 0
 end
 
-!OSPF on COREswitch
+!OSPF on COREswitch ( Line 392-398 Paste on COREbaba )
 !@CoreBABA:
 config t
 router ospf 1
@@ -396,7 +397,8 @@ int gi 0/1
  ip ospf network point-to-point
 end
 
-!Set Switchports to L3  "PORT1 MUST BE PART OF LAN"  = VLAN1 for FORTINET 80E
+TASK3***TASK3***TASK3*** ( FORTINET 80E and 60E Configurations )
+!Set Switchports to L3  "PORT1 MUST BE PART OF LAN"  = VLAN1 ( Line 402-409 Paste on FORTINET 80E )
 config system virtual-switch
  edit lan
   config port
@@ -406,7 +408,7 @@ config system virtual-switch
  next
 end
 
-!Config Static IP Address for FORTINER 80E
+!Config Static IP Address for FORTINET 80E ( Line 410-435 Paste on FORTINET 80E )
 config system interface
  edit wan1
   set mode static
@@ -435,17 +437,17 @@ edit loopback1
 end
 
 !Some Fortinet use Internal/Port modes depending on the version of Fortinet you are using, this is for FORTINET 60E
-!Delete 1st the virtual-swtich to  L3  "INTERNA1 MUST BE PART OF LAN"  = VLAN1
+!Delete 1st the virtual-swtich to  L3  "INTERNA1 MUST BE PART OF LAN"  = VLAN1 ( Line 441-449 Paste on FORTINET 60E )
 config system virtual-switch
  edit "internal"
- config port
- delete "internal1"
- delete "internal2"
- end
+  config port
+   delete "internal1"
+   delete "internal2"
+  end
  next
- end
+end
 
-!Set static mode to internal1
+!Set ip address & static mode to internal1 ( Line 451-476 Paste on FORTINET 60E )
 config system interface
  edit wan1
   set mode static
@@ -473,7 +475,8 @@ edit loopback1
  end
 end
 
-!OSPF Routing on Fortinet
+TASK4***TASK4***TASK4*** ( FORTINET ROUTING 80E and 60E Configurations )
+!OSPF Routing on Fortinet ( Line 480-500 Paste on FORTINET 60E or 80E )
 config router ospf 
  set router-id ~~.0.0.1
  set log-neighbour-changes enable
@@ -496,7 +499,7 @@ config router ospf
    end
  end
 
-!OSPF Routing Point-to-Point for Internal 1 and up on Fortinet 60E
+!OSPF Routing Point-to-Point for Internal 1 and up on Fortinet 60E (Dikit kay COREbaba) ( Line 503-510 Paste kay FORTINET 60E ) 
 config router ospf
 config ospf-interface
   edit "internal1"
@@ -506,7 +509,7 @@ config ospf-interface
  end
 end
 
-!OSPF Routing Point-to-Point for Port 1 and up on Fortinet 80E
+!OSPF Routing Point-to-Point for Port 1 and up on Fortinet 80E (Dikit kay COREbaba) ( Line 513-520 Paste kay FORTINET 80E ) 
 config router ospf
 config ospf-interface
   edit "port1"
@@ -517,13 +520,15 @@ config ospf-interface
 end
 
 ! SHOW COMMANDS ON FORTINET, SHOW ROUTING TABLE & SHOW NEIGHBORS
+SFC: show full-configuration
 GSIP: get system interface physical
 SRO: show router ospf
 GRION: get router info ospf neighbor
 GRIRTA: get router info routing-table all
 GRIRTO: get router info routing-table ospf
 
-!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 60E OUTGOING) Para makalabas
+TASK4***TASK4***TASK4*** ( FORTINET FIREWALL POLICY 80E and 60E Configurations ) or via (GUI Configurations 10.~~.~~.1)
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 60E OUTGOING) Para makalabas ( Line 531-543 Paste kay FORTINET 60E ) 
 config firewall policy
  edit 1
  set name "VoIP-Allow"
@@ -538,7 +543,7 @@ config firewall policy
  next
 end
 
-!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 80E OUTGOING) Para makalabas
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 80E OUTGOING) Para makalabas ( Line 548-559 Paste kay FORTINET 80E ) 
 config firewall policy
  edit 1
  set name "VoIP-Allow"
@@ -553,13 +558,12 @@ config firewall policy
  next
 end
 
-
-!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 60E INCOMING) Para makapasok
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 60E INCOMING) Para makapasok ( Line 562-574 Paste kay FORTINET 60E ) 
 config firewall policy
  edit 1
- set name "VoIP-Allow"
+ set name "INcoming"
  set srcintf "WAN1"
- set dstintf "INTERNAL"
+ set dstintf "INTERNAL1"
  set srcaddr "all"
  set dstaddr "all"
  set action accept
@@ -569,12 +573,12 @@ config firewall policy
  next
 end
 
-!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 80E INCOMING) Para makapasok
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet for 80E INCOMING) Para makapasok ( Line 577-589 Paste kay FORTINET 80E ) 
 config firewall policy
  edit 1
- set name "VoIP-Allow"
+ set name "INcoming"
  set srcintf "WAN1"
- set dstintf "INTERNAL1"
+ set dstintf "PORT1"
  set srcaddr "all"
  set dstaddr "all"
  set action accept
