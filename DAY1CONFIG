@@ -404,6 +404,7 @@ config system virtual-switch
     next
 end
 
+!Config Static IP Address
 config system interface
  edit wan1
   set mode static
@@ -421,7 +422,31 @@ config system interface
   set alias "INTERNAL"
   set status up
   end
-  config router ospf 
+
+!Some Fortinet use Internal/Port modes depending on the version of Fortinet you are using
+!Delete 1st the virtual-swtich to  L3  "INTERNA1 MUST BE PART OF LAN"  = VLAN1
+config system virtual-switch
+	edit "internal"
+		config port
+			delete "internal1"
+ 			delete "internal2"
+ 		end
+ 	next
+end
+
+!Set static mode to internal1
+config system interface
+ edit internal1
+  set mode static
+  set ip 10.~~.~~.1 255.255.255.0
+  set allowaccess ping https ssh telnet http
+  set role lan
+  set alias "INTERNAL"
+  set status up
+  end
+
+!OSPF Routing on Fortinet
+config router ospf 
  set router-id 10.~~.~~.1
  set log-neighbour-changes enable
  config area
@@ -438,6 +463,12 @@ config system interface
    set prefix 200.0.0.0 255.255.255.0
    end
    end
+
+! SHOW COMMANDS ON FORTINET & ROUTING TABLE & NEIGHBORS on Fortinet
+GSIP: get system interface physical
+SRO: show router ospf
+GRION: get router info ospf neighbor
+GRIRTO: get router info routing-table ospf
 
 !Edit Firewall Policy to call other classmates on FIREWALL (Fortinet)
 config firewall policy
