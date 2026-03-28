@@ -395,15 +395,15 @@ end
 
 !Set Switchports to L3  "PORT1 MUST BE PART OF LAN"  = VLAN1
 config system virtual-switch
-    edit lan
-        config port
-            delete port1
-            delete port2
-        end
-    next
+ edit lan
+  config port
+    delete port1
+    delete port2
+  end
+ next
 end
 
-!Config Static IP Address
+!Config Static IP Address for FORTINER 80E
 config system interface
  edit wan1
   set mode static
@@ -431,7 +431,7 @@ edit loopback1
  end
 end
 
-!Some Fortinet use Internal/Port modes depending on the version of Fortinet you are using
+!Some Fortinet use Internal/Port modes depending on the version of Fortinet you are using, this is for FORTINET 60E
 !Delete 1st the virtual-swtich to  L3  "INTERNA1 MUST BE PART OF LAN"  = VLAN1
 config system virtual-switch
  edit "internal"
@@ -444,6 +444,14 @@ config system virtual-switch
 
 !Set static mode to internal1
 config system interface
+ edit wan1
+  set mode static
+  set ip 200.0.0.~~ 255.255.255.0 
+  set allowaccess ping https ssh telnet
+  set role wan
+  set alias "INTERNET"
+  set status up
+  next
  edit internal1
   set mode static
   set ip 10.~~.~~.1 255.255.255.0
@@ -451,7 +459,16 @@ config system interface
   set role lan
   set alias "INTERNAL"
   set status up
-  end
+  next
+edit loopback1
+  set vdom root
+  set mode static
+  set ip ~~.0.0.1 255.255.255.255
+  set allowaccess ping
+  set type loopback
+  set status up
+ end
+end
 
 !OSPF Routing on Fortinet
 config router ospf 
@@ -476,7 +493,7 @@ config router ospf
    end
  end
 
-!OSPF Routing Point-to-Point for Internal 1 and up on Fortinet
+!OSPF Routing Point-to-Point for Internal 1 and up on Fortinet 60E
 config router ospf
 config ospf-interface
   edit "internal1"
@@ -486,7 +503,7 @@ config ospf-interface
  end
 end
 
-!OSPF Routing Point-to-Point for Port 1 and up on Fortinet
+!OSPF Routing Point-to-Point for Port 1 and up on Fortinet 80E
 config router ospf
 config ospf-interface
   edit "port1"
@@ -502,12 +519,27 @@ SRO: show router ospf
 GRION: get router info ospf neighbor
 GRIRTO: get router info routing-table ospf
 
-!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet)
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet) for 60E
 config firewall policy
  edit 1
  set name "VoIP-Allow"
- set srcintf "INTERNAL"
- set dstintf "WAN"
+ set srcintf "INTERNAL1"
+ set dstintf "WAN1"
+ set srcaddr "all"
+ set dstaddr "all"
+ set action accept
+ set schedule "always"
+ set service "ALL"
+ set nat disable
+ next
+end
+
+!Edit Firewall Policy to call other classmates on FIREWALL (Fortinet) for 80E
+config firewall policy
+ edit 1
+ set name "VoIP-Allow"
+ set srcintf "PORT1"
+ set dstintf "WAN1"
  set srcaddr "all"
  set dstaddr "all"
  set action accept
