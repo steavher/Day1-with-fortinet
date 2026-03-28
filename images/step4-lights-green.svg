@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" width="500" height="400">
+  <defs>
+    <style>
+      text { font-family: Arial, sans-serif; }
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="500" height="400" fill="#f5f5f5" rx="10"/>
+  <!-- Title -->
+  <text x="250" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#333">Step 4: Wait for Headset &amp; Speaker LEDs to Turn Green</text>
+  <!-- Phone body -->
+  <rect x="150" y="50" width="200" height="300" rx="12" fill="#2c2c2c" stroke="#1a1a1a" stroke-width="2"/>
+  <!-- Screen -->
+  <rect x="175" y="70" width="150" height="90" rx="4" fill="#1a1a1a" stroke="#444" stroke-width="1"/>
+  <text x="250" y="115" text-anchor="middle" font-size="11" fill="#33cc33">Booting up...</text>
+  <!-- Headset button - GREEN GLOW -->
+  <circle cx="195" cy="180" r="12" fill="#00cc00" opacity="0.3"/>
+  <rect x="183" y="170" width="24" height="18" rx="4" fill="#333" stroke="#00cc00" stroke-width="2"/>
+  <!-- Headset icon -->
+  <path d="M190,182 Q190,176 195,176 Q200,176 200,182" fill="none" stroke="#00cc00" stroke-width="1.5"/>
+  <line x1="190" y1="182" x2="190" y2="184" stroke="#00cc00" stroke-width="1.5"/>
+  <line x1="200" y1="182" x2="200" y2="184" stroke="#00cc00" stroke-width="1.5"/>
+  <!-- GREEN LED indicator for headset -->
+  <circle cx="195" cy="193" r="4" fill="#00ff00"/>
+  <circle cx="195" cy="193" r="6" fill="none" stroke="#00ff00" stroke-width="1" opacity="0.5"/>
+  <!-- Label -->
+  <text x="90" y="178" font-size="10" fill="#00cc00" font-weight="bold">Headset</text>
+  <text x="90" y="190" font-size="10" fill="#00cc00" font-weight="bold">LED GREEN</text>
+  <line x1="130" y1="185" x2="181" y2="182" stroke="#00cc00" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Speaker button - GREEN GLOW -->
+  <circle cx="305" cy="180" r="12" fill="#00cc00" opacity="0.3"/>
+  <rect x="293" y="170" width="24" height="18" rx="4" fill="#333" stroke="#00cc00" stroke-width="2"/>
+  <!-- Speaker icon -->
+  <rect x="299" y="176" width="4" height="6" fill="#00cc00"/>
+  <polygon points="303,174 310,170 310,188 303,184" fill="none" stroke="#00cc00" stroke-width="1"/>
+  <!-- GREEN LED indicator for speaker -->
+  <circle cx="305" cy="193" r="4" fill="#00ff00"/>
+  <circle cx="305" cy="193" r="6" fill="none" stroke="#00ff00" stroke-width="1" opacity="0.5"/>
+  <!-- Label -->
+  <text x="370" y="178" font-size="10" fill="#00cc00" font-weight="bold">Speaker</text>
+  <text x="370" y="190" font-size="10" fill="#00cc00" font-weight="bold">LED GREEN</text>
+  <line x1="370" y1="185" x2="319" y2="182" stroke="#00cc00" stroke-width="1" stroke-dasharray="3,2"/>
+  <!-- Keypad (abbreviated) -->
+  <rect x="180" y="220" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="197" y="237" text-anchor="middle" font-size="11" fill="#ddd">1</text>
+  <rect x="225" y="220" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="242" y="237" text-anchor="middle" font-size="11" fill="#ddd">2</text>
+  <rect x="270" y="220" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="287" y="237" text-anchor="middle" font-size="11" fill="#ddd">3</text>
+  <rect x="180" y="250" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="197" y="267" text-anchor="middle" font-size="11" fill="#ddd">4</text>
+  <rect x="225" y="250" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="242" y="267" text-anchor="middle" font-size="11" fill="#ddd">5</text>
+  <rect x="270" y="250" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="287" y="267" text-anchor="middle" font-size="11" fill="#ddd">6</text>
+  <rect x="180" y="280" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="197" y="297" text-anchor="middle" font-size="11" fill="#ddd">7</text>
+  <rect x="225" y="280" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="242" y="297" text-anchor="middle" font-size="11" fill="#ddd">8</text>
+  <rect x="270" y="280" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="287" y="297" text-anchor="middle" font-size="11" fill="#ddd">9</text>
+  <rect x="180" y="310" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="197" y="327" text-anchor="middle" font-size="11" fill="#ddd">*</text>
+  <rect x="225" y="310" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="242" y="327" text-anchor="middle" font-size="11" fill="#ddd">0</text>
+  <rect x="270" y="310" width="35" height="25" rx="3" fill="#444" stroke="#555" stroke-width="1"/>
+  <text x="287" y="327" text-anchor="middle" font-size="11" fill="#ddd">#</text>
+  <!-- Instruction text -->
+  <text x="250" y="370" text-anchor="middle" font-size="13" fill="#cc0000" font-weight="bold">Both Headset and Speaker buttons glow GREEN</text>
+  <text x="250" y="388" text-anchor="middle" font-size="11" fill="#666">This confirms the phone is ready for the key sequence</text>
+</svg>
