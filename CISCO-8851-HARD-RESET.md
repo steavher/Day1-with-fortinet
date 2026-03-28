@@ -32,7 +32,7 @@
 
 Disconnect the **LAN (Ethernet) cable** from the back of the Cisco 8851 phone. Since the phone is powered via PoE, removing the LAN cable will **completely power off** the phone.
 
-![Step 1 - Unplug LAN Cable](images/step1-unplug-lan.svg)
+![Step 1 - Unplug LAN Cable](images/step1-unplug-lan.png)
 
 > **Key Point:** The phone screen must be completely **OFF** before proceeding.
 
@@ -42,7 +42,7 @@ Disconnect the **LAN (Ethernet) cable** from the back of the Cisco 8851 phone. S
 
 While the phone is **powered off**, locate the **#** (hash/pound) button on the keypad and **press and hold it down**. Do **not** release the button.
 
-![Step 2 - Hold # Button](images/step2-hold-hash.svg)
+![Step 2 - Hold # Button](images/step2-hold-hash.png)
 
 > **Key Point:** Keep the **#** button held down throughout the next step.
 
@@ -52,7 +52,7 @@ While the phone is **powered off**, locate the **#** (hash/pound) button on the 
 
 With the **#** button still held down, plug the **LAN cable** back into the phone. The phone will begin to **power on** via PoE.
 
-![Step 3 - Plug LAN Cable While Holding #](images/step3-plug-lan.svg)
+![Step 3 - Plug LAN Cable While Holding #](images/step3-plug-lan.png)
 
 > **Key Point:** Do **NOT** release the **#** button until the indicator lights turn green (next step).
 
@@ -62,7 +62,7 @@ With the **#** button still held down, plug the **LAN cable** back into the phon
 
 Continue holding the **#** button and watch for the **Headset** icon button (left side) and the **Speaker** icon button (right side) to light up **GREEN**. Once both LEDs glow green, **release the # button**.
 
-![Step 4 - Headset and Speaker LEDs Green](images/step4-lights-green.svg)
+![Step 4 - Headset and Speaker LEDs Green](images/step4-lights-green.png)
 
 > **Key Point:** Both the **Headset** and **Speaker** button LEDs must be **GREEN** before you release **#** and enter the key sequence.
 
@@ -76,7 +76,7 @@ Immediately after releasing the **#** button, press the following keys **in exac
 1  2  3  4  5  6  7  8  *  0  #
 ```
 
-![Step 5 - Enter Key Sequence](images/step5-key-sequence.svg)
+![Step 5 - Enter Key Sequence](images/step5-key-sequence.png)
 
 > **WARNING:** The sequence is **1 2 3 4 5 6 7 8 * 0 #** - note that **9 is skipped**. After pressing **8**, press **\*** (asterisk), then **0**, then **#**.
 
@@ -86,7 +86,7 @@ Immediately after releasing the **#** button, press the following keys **in exac
 
 After entering the correct key sequence, the **Mute** button (microphone icon) will begin to **flash RED**. This confirms that the factory reset process has been successfully triggered.
 
-![Step 6 - Mute Button Flashes Red](images/step6-mute-red-flash.svg)
+![Step 6 - Mute Button Flashes Red](images/step6-mute-red-flash.png)
 
 > **Key Point:** If the Mute button does **not** flash red, the sequence was entered incorrectly. You must **start over from Step 1**.
 
@@ -96,7 +96,7 @@ After entering the correct key sequence, the **Mute** button (microphone icon) w
 
 The phone will automatically **reboot** and restore all settings to **factory defaults**. The Cisco logo will appear on screen as the phone initializes with its default configuration.
 
-![Step 7 - Reset Complete](images/step7-reset-complete.svg)
+![Step 7 - Reset Complete](images/step7-reset-complete.png)
 
 > **Key Point:** Do **NOT** unplug the phone during the reboot process. Allow it to complete the full initialization.
 
